@@ -14,10 +14,10 @@ Ubuntu – 192.168.1.103
 Remnux – 192.168.1.104
 Windows Server – 192.168.1.110
 Windows 11 – 192.168.1.111
+
 # Home Security Lab Setup Guide
 
 A walkthrough for building a virtualized security lab, including hypervisor setup, attacker and victim machines, a virtual firewall, and a full detection/monitoring stack.
-
 
 # VMware Workstation Pro
 
