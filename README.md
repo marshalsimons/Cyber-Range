@@ -24,7 +24,7 @@ Windows 11 – 192.168.1.111
 ## Network Diagram
 
 <div class ="box">
-<img width="240" height="206" alt="image" src="https://github.com/user-attachments/assets/86e19f08-e313-4d2c-8187-a758bb469ab4" />
+<img width="11400" height="1060" alt="image" src="https://github.com/user-attachments/assets/86e19f08-e313-4d2c-8187-a758bb469ab4" />
 </div>
 
 
