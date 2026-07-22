@@ -39,37 +39,37 @@ A walkthrough for building a virtualized security lab, including hypervisor setu
 
 # pfSense
 
-### Download and Prepare
+### Download ISO
 1. Go to https://www.pfsense.org/download/ and select the **AMD64 ISO** image.
 2. Add it to your cart, check out, create a free account, and follow the instructions to download.
 3. Download and install 7-Zip (64-bit) from https://www.7-zip.org/ to extract the pfSense image.
 
 ### Import and Configure the VM
 1. Import the extracted image into VMware Workstation Pro.
-2. Add a second network adapter to the VM.
-3. Create a dedicated LAN segment for the internal network.
-4. Increase the VM's resources to at least 2 GB RAM and 2 CPUs, or installation will fail.
-5. Start the VM and press Enter to begin installation.
-6. Choose **Install**.
-7. Assign `eth0` to WAN and `eth1` to LAN.
-8. Note the DHCP subnet range for the LAN (e.g. `192.168.1.100–199`).
-9. Install the Community Edition and continue through the remaining prompts.
+2. Add a second and third network adapter to the VM.
+3. Create a dedicated LAN segment for the internal network on one adapter.
+4. Create another segment to move Kali to for cross-network attacks.
+5. Increase the VM's resources to at least 2 GB RAM and 2 CPUs, or installation will fail.
+6. Start the VM and press Enter to begin installation.
+7. Choose **Install**.
+8. Assign `eth0` to WAN, `eth1` to LAN, `eth2` should default to OPT1.
+9. Note the DHCP subnet range for the LAN (e.g. `192.168.1.100–199`).
+10. Install the Community Edition and continue through the remaining prompts.
 
 ### Initial Access
 1. Once installation completes, switch to a different VM to reach the web interface, making sure that VM is connected to the internal LAN network.
 2. Navigate to the pfSense IP address, `192.168.1.1`, and accept the certificate warning.
 3. Log in with the default credentials: username `admin`, password `pfsense`.
 4. Complete the setup wizard: set the time zone, then change the admin password.
-5. Disable DHCP if it is not needed.
+5. Disable DHCP if hard-coding IPs.
 
 ### Firewall Rules
-1. Create an alias for common internet ports: `53, 80, 443`.
-2. On the **WAN** interface, deny all inbound traffic unless a service (such as a web server) needs to be reachable from outside.
-3. On the **LAN** interface:
+1. On the **WAN** interface, deny all inbound traffic unless a service (such as a web server) needs to be reachable from outside.
+2. On the **LAN** interface:
    - Keep the anti-lockout rule enabled to avoid losing access to the pfSense web interface.
    - Delete the default "allow all" rule, since it is unsafe.
-   - Create a rule allowing internet access using the TCP/UDP alias created above.
-4. Test internet connectivity before and after applying the rules to confirm they work as expected.
+   - Create a rule allowing internet access over ports: `53, 80, 443`.
+3. Test internet connectivity before and after applying the rules to confirm they work as expected.
 
 ### VMware Tools
 1. Go to **System → Package Manager** and install the **vmtools** package.
