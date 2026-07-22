@@ -5,6 +5,7 @@ A walkthrough for building a virtualized security lab, including hypervisor setu
 # Under Construction
 ---
 
+# IP's for my devices
 PfSense – 192.168.1.1
 SecurityOnion – 192.168.1.100
 Kali – 192.168.1.101
@@ -13,8 +14,10 @@ Ubuntu – 192.168.1.103
 Remnux – 192.168.1.104
 Windows Server – 192.168.1.110
 Windows 11 – 192.168.1.111
+# Home Security Lab Setup Guide
 
----
+A walkthrough for building a virtualized security lab, including hypervisor setup, attacker and victim machines, a virtual firewall, and a full detection/monitoring stack.
+
 
 # VMware Workstation Pro
 
@@ -24,7 +27,6 @@ Windows 11 – 192.168.1.111
 4. Click the **Free Software Downloads** link.
 5. Select **VMware Workstation Pro** and download.
 
----
 
 # Kali Linux
 
@@ -55,7 +57,6 @@ Windows 11 – 192.168.1.111
    sudo systemctl restart networking
    ```
 
----
 
 # Metasploitable2
 
@@ -63,7 +64,6 @@ Windows 11 – 192.168.1.111
 2. Click **Download Now**.
 3. Create a folder and extract the downloaded archive.
 
----
 
 # REMnux
 
@@ -77,7 +77,6 @@ Windows 11 – 192.168.1.111
    sudo mount /media/cdrom /media/cdrom/
    ```
 
----
 
 # Ubuntu 64-bit
 
@@ -87,7 +86,6 @@ Windows 11 – 192.168.1.111
    sudo apt-get install open-vm-tools-desktop
    ```
 
----
 
 # Windows 11
 
@@ -95,7 +93,6 @@ Windows 11 – 192.168.1.111
 2. Download and install the VM as usual.
 3. Configure a static IP address.
 
----
 
 # Windows Server 2022
 
@@ -122,7 +119,6 @@ Windows 11 – 192.168.1.111
 1. On the client Windows PC, search for **Domain or Workgroup**.
 2. Click **Change**, then enter the domain name to join it.
 
----
 
 # pfSense
 
@@ -162,7 +158,6 @@ Windows 11 – 192.168.1.111
 1. Go to **System → Package Manager** and install the **vmtools** package.
 2. Restart pfSense. This is needed to support graceful shutdowns from the hypervisor.
 
----
 
 # Security Onion
 
@@ -214,7 +209,6 @@ Security Onion serves as the defender-side counterpart to Kali Linux, providing 
    C:\Program Files (x86)\ossec-agent\ossec.conf
    ```
 
----
 
 # Network Intrusion Detection (Suricata / ET Rules)
 
