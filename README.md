@@ -2,14 +2,23 @@
 A walkthrough for building a virtualized security lab, including hypervisor setup, attacker and victim machines, a virtual firewall, and a full detection/monitoring stack.
 
 # IP's for my devices
+
 PfSense – 192.168.1.1
+
 SecurityOnion – 192.168.1.100
+
 Kali – 192.168.1.101
+
 Metasploitable2 – 192.168.1.102
+
 Ubuntu – 192.168.1.103
+
 Remnux – 192.168.1.104
+
 Windows Server – 192.168.1.110
+
 Windows 11 – 192.168.1.111
+
 
 # Home Security Lab Setup Guide
 
@@ -22,6 +31,45 @@ A walkthrough for building a virtualized security lab, including hypervisor setu
 3. Navigate to **My Downloads**.
 4. Click the **Free Software Downloads** link.
 5. Select **VMware Workstation Pro** and download.
+
+# pfSense
+
+### Download and Prepare
+1. Go to https://www.pfsense.org/download/ and select the **AMD64 ISO** image.
+2. Add it to your cart, check out, create a free account, and follow the instructions to download.
+3. Download and install 7-Zip (64-bit) from https://www.7-zip.org/ to extract the pfSense image.
+
+### Import and Configure the VM
+1. Import the extracted image into VMware Workstation Pro.
+2. Add a second network adapter to the VM.
+3. Create a dedicated LAN segment for the internal network.
+4. Increase the VM's resources to at least 2 GB RAM and 2 CPUs, or installation will fail.
+5. Start the VM and press Enter to begin installation.
+6. Choose **Install**.
+7. Assign `eth0` to WAN and `eth1` to LAN.
+8. Note the DHCP subnet range for the LAN (e.g. `192.168.1.100–199`).
+9. Install the Community Edition and continue through the remaining prompts.
+
+### Initial Access
+1. Once installation completes, switch to a different VM to reach the web interface, making sure that VM is connected to the internal LAN network.
+2. Navigate to the pfSense IP address, `192.168.1.1`, and accept the certificate warning.
+3. Log in with the default credentials: username `admin`, password `pfsense`.
+4. Complete the setup wizard: set the time zone, then change the admin password.
+5. Disable DHCP if it is not needed.
+
+### Firewall Rules
+1. Create an alias for common internet ports: `53, 80, 443`.
+2. On the **WAN** interface, deny all inbound traffic unless a service (such as a web server) needs to be reachable from outside.
+3. On the **LAN** interface:
+   - Keep the anti-lockout rule enabled to avoid losing access to the pfSense web interface.
+   - Delete the default "allow all" rule, since it is unsafe.
+   - Create a rule allowing internet access using the TCP/UDP alias created above.
+4. Test internet connectivity before and after applying the rules to confirm they work as expected.
+
+### VMware Tools
+1. Go to **System → Package Manager** and install the **vmtools** package.
+2. Restart pfSense. This is needed to support graceful shutdowns from the hypervisor.
+
 
 
 # Kali Linux
@@ -114,45 +162,6 @@ A walkthrough for building a virtualized security lab, including hypervisor setu
 
 1. On the client Windows PC, search for **Domain or Workgroup**.
 2. Click **Change**, then enter the domain name to join it.
-
-
-# pfSense
-
-### Download and Prepare
-1. Go to https://www.pfsense.org/download/ and select the **AMD64 ISO** image.
-2. Add it to your cart, check out, create a free account, and follow the instructions to download.
-3. Download and install 7-Zip (64-bit) from https://www.7-zip.org/ to extract the pfSense image.
-
-### Import and Configure the VM
-1. Import the extracted image into VMware Workstation Pro.
-2. Add a second network adapter to the VM.
-3. Create a dedicated LAN segment for the internal network.
-4. Increase the VM's resources to at least 2 GB RAM and 2 CPUs, or installation will fail.
-5. Start the VM and press Enter to begin installation.
-6. Choose **Install**.
-7. Assign `eth0` to WAN and `eth1` to LAN.
-8. Note the DHCP subnet range for the LAN (e.g. `192.168.1.100–199`).
-9. Install the Community Edition and continue through the remaining prompts.
-
-### Initial Access
-1. Once installation completes, switch to a different VM to reach the web interface, making sure that VM is connected to the internal LAN network.
-2. Navigate to the pfSense IP address, `192.168.1.1`, and accept the certificate warning.
-3. Log in with the default credentials: username `admin`, password `pfsense`.
-4. Complete the setup wizard: set the time zone, then change the admin password.
-5. Disable DHCP if it is not needed.
-
-### Firewall Rules
-1. Create an alias for common internet ports: `53, 80, 443`.
-2. On the **WAN** interface, deny all inbound traffic unless a service (such as a web server) needs to be reachable from outside.
-3. On the **LAN** interface:
-   - Keep the anti-lockout rule enabled to avoid losing access to the pfSense web interface.
-   - Delete the default "allow all" rule, since it is unsafe.
-   - Create a rule allowing internet access using the TCP/UDP alias created above.
-4. Test internet connectivity before and after applying the rules to confirm they work as expected.
-
-### VMware Tools
-1. Go to **System → Package Manager** and install the **vmtools** package.
-2. Restart pfSense. This is needed to support graceful shutdowns from the hypervisor.
 
 
 # Security Onion
