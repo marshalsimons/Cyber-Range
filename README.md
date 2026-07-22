@@ -1,9 +1,9 @@
 # Cyber-Range - Work in Progress
 A walkthrough for building a virtualized security lab, including hypervisor setup, attacker and victim machines, a virtual firewall, and a full detection/monitoring stack.
 
-# Network Information
+## Network Information
 
-## IP's for my devices
+### IP's for my devices
 
 PfSense – 192.168.1.1
 
@@ -21,13 +21,11 @@ Windows Server – 192.168.1.110
 
 Windows 11 – 192.168.1.111
 
-## Network Diagram
-
+### Network Diagram
 
 <div align="center">
 <img width="700" height="600" alt="image" src="https://github.com/user-attachments/assets/14f45413-a5a0-4788-991f-9356ba149ca3" />
 </div>
-
 
 # Home Security Lab Setup Guide
 
