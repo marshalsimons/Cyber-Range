@@ -24,7 +24,7 @@ Windows 11 – 192.168.1.111
 ## Network Diagram
 
 <div align="center">
-<img width="981" height="736" alt="image" src="https://github.com/user-attachments/assets/13d33f3d-06a8-408c-979e-2f043974d8f0" />
+<img width="984" height="751" alt="image" src="https://github.com/user-attachments/assets/38e493dc-af1f-49e4-9307-930ed0feaf0a" />
 </div>
 
 # Home Security Lab Setup Guide
