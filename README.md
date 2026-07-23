@@ -16,7 +16,7 @@ A walkthrough for building a virtualized security lab, including hypervisor setu
 ## Network Diagram
 
 <div align="center">
-<img width="756" height="500" alt="image" src="https://github.com/user-attachments/assets/a5394269-3c27-4ad4-ae22-c19398ede501" />
+<img width="953" height="721" alt="image" src="https://github.com/user-attachments/assets/b7289550-9972-4ab4-95d9-8dbe47c1dcdf" />
 </div>
 
 
