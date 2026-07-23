@@ -22,9 +22,9 @@ A walkthrough for building a virtualized security lab, including hypervisor setu
 
 ## Common Errors
 ### No Internet Connectivity: 
-- Check that you are configuring DNS correctly, either through pfSense or DC.
-- Firewall rules to allow outbound traffic
-- DHCP and hard-coded IP collisions
+- Check that you are configuring DNS correctly, either through pfSense or a DC.
+- Firewall rules to allow outbound traffic.
+- DHCP and hard-coded IP collisions.
 ### Devices Powering Down:
 - Ensure you have enough resources to run the VMs. Security Onion is resource-hungry and may require powering some down to accommodate. 
 ### Security Onion Not Ingesting Suricatta Logs
