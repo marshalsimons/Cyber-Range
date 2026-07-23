@@ -25,12 +25,15 @@ Windows 11 – 192.168.1.111
 
 <div align="center">
 <img width="996" height="755" alt="image" src="https://github.com/user-attachments/assets/8f272373-98cb-46df-bb0a-c48d8dcfb522" />
-
 </div>
 
 # Home Security Lab Setup Guide
 
 A walkthrough for building a virtualized security lab, including hypervisor setup, attacker and victim machines, a virtual firewall, and a full detection/monitoring stack.
+
+
+
+
 
 # VMware Workstation Pro
 
@@ -39,6 +42,11 @@ A walkthrough for building a virtualized security lab, including hypervisor setu
 3. Navigate to **My Downloads**.
 4. Click the **Free Software Downloads** link.
 5. Select **VMware Workstation Pro** and download.
+
+
+
+
+
 
 # pfSense
 
@@ -49,15 +57,15 @@ A walkthrough for building a virtualized security lab, including hypervisor setu
 
 ### Import and Configure the VM
 1. Import the extracted image into VMware Workstation Pro.
-2. Add a second and third network adapter to the VM.
-3. Create a dedicated LAN segment for the internal network on one adapter.
-4. Create another segment to move Kali to for cross-network attacks.
-5. Increase the VM's resources to at least 2 GB RAM and 2 CPUs, or installation will fail.
-6. Start the VM and press Enter to begin installation.
-7. Choose **Install**.
-8. Assign `eth0` to WAN, `eth1` to LAN, `eth2` should default to OPT1.
-9. Note the DHCP subnet range for the LAN (e.g. `192.168.1.100–199`).
-10. Install the Community Edition and continue through the remaining prompts.
+3. Add a second and third network adapter to the VM.
+4. Create a dedicated LAN segment for the internal network on one adapter.
+5. Create another segment to move Kali to for cross-network attacks.
+6. Increase the VM's resources to at least 2 GB RAM and 2 CPUs, or installation will fail.
+7. Start the VM and press Enter to begin installation.
+8. Choose **Install**.
+9. Assign `eth0` to WAN, `eth1` to LAN, `eth2` should default to OPT1.
+10. Note the DHCP subnet range for the LAN (e.g. `192.168.1.100–199`).
+11. Install the Community Edition and continue through the remaining prompts.
 
 ### Initial Access
 1. Once installation completes, switch to a different VM to reach the web interface, making sure that VM is connected to the internal LAN network.
@@ -65,6 +73,7 @@ A walkthrough for building a virtualized security lab, including hypervisor setu
 3. Log in with the default credentials: username `admin`, password `pfsense`.
 4. Complete the setup wizard: set the time zone, then change the admin password.
 5. Disable DHCP if hard-coding IPs.
+6. Go to **System → Package Manager** and install the **vmtools** package.
 
 ### Firewall Rules
 1. On the **WAN** interface, deny all inbound traffic unless a service (such as a web server) needs to be reachable from outside.
@@ -72,11 +81,10 @@ A walkthrough for building a virtualized security lab, including hypervisor setu
    - Keep the anti-lockout rule enabled to avoid losing access to the pfSense web interface.
    - Delete the default "allow all" rule, since it is unsafe.
    - Create a rule allowing internet access over ports: `53, 80, 443`.
-3. Test internet connectivity before and after applying the rules to confirm they work as expected.
 
-### VMware Tools
-1. Go to **System → Package Manager** and install the **vmtools** package.
-2. Restart pfSense. This is needed to support graceful shutdowns from the hypervisor.
+
+
+
 
 
 
@@ -89,6 +97,9 @@ A walkthrough for building a virtualized security lab, including hypervisor setu
 4. Create a subfolder for Kali Linux.
 5. Extract the downloaded archive into that folder.
 6. Create the VM in VMware Workstation Pro.
+7. Add the network adapter to the LAN segment.
+8. Power on and accept default prompts to complete installation.
+9. Install VMware tools and update the device.
 
 ### Configure a Static IP
 1. Edit the network interfaces file:
@@ -110,11 +121,31 @@ A walkthrough for building a virtualized security lab, including hypervisor setu
    ```
 
 
+
+
+   
+# Ubuntu 64-bit
+
+1. Go to https://ubuntu.com/download/desktop and download the installer.
+2. Create a new VM and add the ISO
+3. Add the device to the LAN segment
+4. After installation, install the VMware tools package and update the device.
+
+
+
+
+
 # Metasploitable2
 
 1. Go to https://www.rapid7.com/products/metasploit/metasploitable/
 2. Click **Download Now**.
 3. Create a folder and extract the downloaded archive.
+4. Add the network adapter to the LAN segment.
+
+
+
+
+
 
 
 # REMnux
@@ -122,35 +153,61 @@ A walkthrough for building a virtualized security lab, including hypervisor setu
 1. Go to https://docs.remnux.org/install-distro/get-virtual-appliance
 2. Download the OVA file.
 3. Right-click the file and choose **Open in VMware**.
-4. Add a network adapter to the VM.
-5. Mount the CD-ROM device if needed:
+4. Add the network adapter to the LAN segment.
+5. Power on the device and accept the default configurations.
+6. Mount the CD-ROM device if needed:
    ```
    sudo mkdir /media/cdrom
    sudo mount /media/cdrom /media/cdrom/
    ```
 
 
-# Ubuntu 64-bit
 
-1. Go to https://ubuntu.com/download/desktop and download the installer.
-2. After installation, install the VMware tools package:
+
+
+# Mandiant Flare
+1. Detailed guide found at https://github.com/mandiant/flare-vm.
+2. Download and install a Win 10+ machine ISO
+3. Add device to LAN subnet
+4. Power on and install a pro version
+5. Accept all default options.
+6. Configure a static IP address.
+7. Disable Windows Defender and Real-Time Protection in the group policy editor.
+8. Open an administrative PowerShell console and enter the following scripts individually:
    ```
-   sudo apt-get install open-vm-tools-desktop
+   (New-Object net.webclient).DownloadFile('https://raw.githubusercontent.com/mandiant/flare-vm/main/install.ps1',"$([Environment]::GetFolderPath("Desktop"))\install.ps1")
+   Unblock-File .\install.ps1
+   Set-ExecutionPolicy Unrestricted -Force
+   .\install.ps1 
    ```
+9. Press Enter to cycle through the install of each package
+
+
+
+
+
 
 
 # Windows 11
 
 1. Go to https://www.microsoft.com/en-us/software-download/windows11
-2. Download and install the VM as usual.
-3. Configure a static IP address.
+2. Download the media creation tool and create the ISO
+3. Create a VM and add the network adapter to the LAN segment
+4. Accept default options.
+5. Configure a static IP address.
+
+
+
+
+
 
 
 # Windows Server 2022
 
 1. Go to https://www.microsoft.com/en-us/evalcenter/evaluate-windows-server-2022
 2. Download and install the VM.
-3. Configure a static IP address.
+3. Add the network adapter to the LAN segment
+4. Configure a static IP address.
 
 ### Active Directory Domain Services
 
@@ -172,9 +229,12 @@ A walkthrough for building a virtualized security lab, including hypervisor setu
 2. Click **Change**, then enter the domain name to join it.
 
 
-# Security Onion
 
-Security Onion serves as the defender-side counterpart to Kali Linux, providing network monitoring and detection.
+
+
+
+
+# Security Onion
 
 ### Download and Import
 1. Go to https://github.com/Security-Onion-Solutions/securityonion/blob/2.4/main/DOWNLOAD_AND_VERIFY_ISO.md
@@ -184,8 +244,8 @@ Security Onion serves as the defender-side counterpart to Kali Linux, providing 
    - Single disk image
    - 8 GB of RAM
    - 2 processors, 4 total cores
-   - Attached to the LAN segment
-4. Finish the import and power on the VM.
+4. Attached to the LAN segment
+5. Finish the import and power on the VM.
 
 ### Installation
 1. Choose a standard (non-desktop) installation, since a GUI is not required.
@@ -222,7 +282,6 @@ Security Onion serves as the defender-side counterpart to Kali Linux, providing 
    C:\Program Files (x86)\ossec-agent\ossec.conf
    ```
 
-
 # Network Intrusion Detection (Suricata / ET Rules)
 
 ### Install Suricata on pfSense
@@ -240,13 +299,14 @@ Security Onion serves as the defender-side counterpart to Kali Linux, providing 
 1. Go to **Interfaces** and configure the LAN interface settings (LAN traffic matters most for internal detection, versus WAN).
 2. Enable **TLS logging**.
 3. Leave **File Store** and **Packet Store** disabled unless needed, since they consume significant disk space, which matters especially in a VM.
-4. Leave **Block Offenders** disabled until the rule set is confirmed to be working correctly.
+4. Leave **Block Offenders** disabled until the ruleset is confirmed to be working correctly.
 5. Under **Categories**, select all relevant categories for the LAN interface.
 6. Review and enable the resulting LAN rule set.
 7. Return to **Interfaces** and start Suricata using the play button.
 
 ### Verification
 1. Monitor resource usage on pfSense using `top`.
-2. Power on Kali Linux and generate traffic to trigger an alert, for example by launching `msfconsole` and running an exploit against `vsftpd`.
-3. Run `whoami` to confirm the session context.
-4. Review the resulting Suricata alerts, suppressing any that are confirmed to be self-generated test traffic.
+2. Power on Kali Linux and generate traffic to trigger an alert
+3.  Launch `msfconsole` and run the `vsftpd` exploit against Metasploitable.
+4. Run `whoami` to confirm the session context.
+5. Find the alert for `whoami` generated in Security Onion. 
