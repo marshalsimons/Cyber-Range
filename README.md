@@ -5,7 +5,7 @@ A walkthrough for building a virtualized security lab, including hypervisor setu
 
 - PfSense – 192.168.1.1
 - SecurityOnion – 192.168.1.100
-- Kali – 192.168.1.101
+- Kali – 192.168.1.101 / 192.168.2.101
 - Metasploitable2 – 192.168.1.102
 - Ubuntu – 192.168.1.103
 - Remnux – 192.168.1.104
