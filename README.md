@@ -34,7 +34,6 @@ A walkthrough for building a virtualized security lab, including hypervisor setu
 - Ensure you have enough resources to run the VMs. Security Onion is resource-hungry and may require powering some down to accommodate. 
 ### Security Onion Not Ingesting Suricatta Logs
 - Make sure ```Internal Networks``` is not set to private when adding the integration
-- 
 
 
 # VMware Workstation Pro
