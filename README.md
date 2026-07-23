@@ -15,6 +15,8 @@ Ubuntu – 192.168.1.103
 
 Remnux – 192.168.1.104
 
+Flare VM - 192.168.1.105
+
 Windows Server – 192.168.1.110
 
 Windows 11 – 192.168.1.111
@@ -22,7 +24,7 @@ Windows 11 – 192.168.1.111
 ## Network Diagram
 
 <div align="center">
-<img width="800" height="700" alt="image" src="https://github.com/user-attachments/assets/14f45413-a5a0-4788-991f-9356ba149ca3" />
+<img width="1720" height="1080" alt="home_lab_network_diagram" src="https://github.com/user-attachments/assets/a73d558f-1ffc-48f9-88c7-712922458ca5" />
 </div>
 
 # Home Security Lab Setup Guide
