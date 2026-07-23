@@ -1,5 +1,5 @@
 # Cyber-Range - Work in Progress
-A walkthrough for building a virtualized security lab, including hypervisor setup, attacker and victim machines, a virtual firewall, malware analysis and reverse engineering machines, as well as a full detection/monitoring stack. This guide is not entirely step-by-step and assumes the reader has experience with VMs.
+A walkthrough for building a virtualized security lab, including hypervisor setup, attacker and victim machines, a virtual firewall, malware analysis and reverse engineering machines, as well as a full detection/monitoring stack. This guide is not entirely step-by-step and assumes the reader has experience with VMs. I am working through adding references to the guides I used in more complicated sections. 
 
 ## Network Map
 
