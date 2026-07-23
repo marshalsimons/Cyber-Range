@@ -25,6 +25,16 @@ A walkthrough for building a virtualized security lab, including hypervisor setu
 
 
 
+## Common Errors
+### No Internet Connectivity: 
+- Check that you are configuring DNS correctly, either through pfSense or DC.
+- Firewall rules to allow outbound traffic
+- DHCP and hard-coded IP collisions
+### Devices Powering Down:
+- Ensure you have enough resources to run the VMs. Security Onion is resource-hungry and may require powering some down to accommodate. 
+### Security Onion Not Ingesting Suricatta Logs
+- Make sure ```Internal Networks``` is not set to private when adding the integration
+- 
 
 
 # VMware Workstation Pro
@@ -249,6 +259,7 @@ A walkthrough for building a virtualized security lab, including hypervisor setu
 2. Confirm access to the dashboard.
 
 ### Elastic Fleet: Adding pfSense Logs
+Detailed Guide: https://youtu.be/aoH8qZwAxek?si=QHMUazYFZtl3g-B4
 1. Go to **Agent Policies → so-grid-nodes_general → Add Integration → pfSense**, then add the integration and set the syslog host, saving and continuing.
 2. Under **Administration → Configuration → Advanced Options → Firewall → Host Groups**, add a custom host group for `192.168.1.1`.
 3. Under **Port Groups**, add a custom port group for `UDP:9001`.
