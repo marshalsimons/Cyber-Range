@@ -3,7 +3,7 @@ A walkthrough for building a virtualized security lab, including hypervisor setu
 
 ## Network Map
 
-- PfSense – 192.168.1.1 / 192.168.2.101
+- PfSense – 192.168.1.1 / 192.168.2.1
 - SecurityOnion – 192.168.1.100
 - Kali – 192.168.1.101 / 192.168.2.101
 - Metasploitable2 – 192.168.1.102
