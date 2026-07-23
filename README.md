@@ -3,23 +3,15 @@ A walkthrough for building a virtualized security lab, including hypervisor setu
 
 ## Network Map
 
-PfSense – 192.168.1.1
-
-SecurityOnion – 192.168.1.100
-
-Kali – 192.168.1.101
-
-Metasploitable2 – 192.168.1.102
-
-Ubuntu – 192.168.1.103
-
-Remnux – 192.168.1.104
-
-Flare VM - 192.168.1.105
-
-Windows Server – 192.168.1.110
-
-Windows 11 – 192.168.1.111
+- PfSense – 192.168.1.1
+- SecurityOnion – 192.168.1.100
+- Kali – 192.168.1.101
+- Metasploitable2 – 192.168.1.102
+- Ubuntu – 192.168.1.103
+- Remnux – 192.168.1.104
+- Flare VM – 192.168.1.105
+- Windows Server – 192.168.1.110
+- Windows 11 – 192.168.1.111
 
 ## Network Diagram
 
